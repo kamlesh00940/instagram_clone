@@ -1,5 +1,4 @@
-from app1.views import *
-
+from app1.views import  *
 """instagram_clone URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -25,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('xyz/', xyz),
     path('login/', login),
+    path('signup/', signup),
     path('signup/', signup),
 
 ]
