@@ -8,9 +8,17 @@ def xyz(request):
 def login(request):
     return render(request, "login.html")
 
+def profile(request):
+    return render(request, "profile.html")
+
 
 def signup(request):
     return render(request, "signup.html")
+
+
+
+def update_profile(request):
+    return render(request, "updateprofile.html")
 
 def signup_page(request):
     email  = request.POST['email']
@@ -70,8 +78,9 @@ def login_page(request):
             email    =row[0][1]
             fullname = row[0][2]
             username =row[0][3]
-            data = {"email": email,"username":username,"fullname":fullname}
-            return render(request, "first.html", data)
+            bio=row[0][8]
+            data = {"email": email,"username":username,"fullname":fullname,"bio":bio}
+            return render(request, "profile.html", data)
 
         else:
             data = {"email": "Password is Not Correct!! Please Forgot", "password": password}
@@ -110,4 +119,26 @@ def otp_verify(request):
     else:
         data = {"email": "please enter valid otp", "otp" : otp}
         return render(request, "second.html", data)
+# updateprofile
+def getupdatevalue (request):
+    email = request.POST['email']
+    fullname = request.POST['fullname']
+    username = request.POST['username']
+    bio = request.POST['bio']
+    data = {"fullname": fullname, "email": email, 'username': username , "bio":bio}
+    return render(request,"updateprofile.html",data)
+
+def updateprofile(request):
+    username=request.POST['username']
+    fullname=request.POST['fullname']
+    email=request.POST['email']
+    bio=request.POST['Bio']
+    cursor = connection.cursor()
+    query1="update signup set fullname=%s ,username=%s, bio=%s where email= '"+email+"' "
+    value = (fullname, username, bio)
+    cursor.execute(query1,value)
+    data = {"email": email, "fullname": "update successfull"}
+    return render(request, "second.html", data)
+
+
 

@@ -1,4 +1,5 @@
-html>
+<html>
+
 <head>
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
 
@@ -143,7 +144,7 @@ input:focus {
 </head>
 <body>
 
-<form action="/login_page/" method="post">
+<form action="/updateprofile/" method="post">
 <div id="wrapper">
 
   <div class="main-content">
@@ -152,19 +153,18 @@ input:focus {
       <h2>Update Profile</h2>
     </div>
     <div class="l-part">
-      <input type="text" placeholder="username" class="input-1"  name="username">
+      <input type="text" placeholder="username" class="input-1"  name="username" value={{username}}>
       <div class="overlap-text">
-        <input type="name" placeholder="Name" class="input-2" name="name">
+        <input type="text" placeholder="Full Name" class="input-2" name="fullname" value={{fullname}}>
         <div>
-            <input type="age" placeholder="Age" class="input-3" name="age">
+            <input type="text" placeholder="Email" class="input-3" name="email" value={{email}}>
         </div>
-        <div>
-            <input type="mobile no" placeholder="Mobile No" class="input-4" name="mobile no">
+<!--        <div>-->
+<!--            <input type="mobile no" placeholder="Mobile No" class="input-4" name="mobile no">-->
+<!--        </div>-->
+<!--        <div>-->
+            <input type="text" placeholder="Add Bio" class="input-5" name="Bio">
         </div>
-        <div>
-            <input type="Bio" placeholder="Add Bio" class="input-5" name="Bio">
-        </div>
-
 
 
 
