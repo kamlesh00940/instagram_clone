@@ -58,9 +58,12 @@
           </button>
         </div>
 
+<!--          home profile sk search-->
         <div class="header__search">
-        <form action="  " method="">
-          <input type="text" placeholder="Search" name="search" value="{{email}}"/>
+        <form action="/search/" method="get">
+          <input type="text" placeholder="Search" name="search" />
+<!--          <input type="hidden" name="email" >-->
+
           <svg
             width="24"
             height="24"
@@ -253,6 +256,8 @@
 <!--              />-->
 <!--            </svg>-->
 <!--          </a>-->
+
+<!--          home profile sk-->
           <button class="profile-button">
             <a href="http://127.0.0.1:8000/profile/">
             <div class="profile-button__border"></div>
@@ -1332,22 +1337,26 @@
         </div>
 
         <section class="side-menu">
-          <div class="side-menu__user-profile">
-            <a
-              href="http://127.0.0.1:8000/profile/"
-              target="_blank"
-              class="side-menu__user-avatar"
-            >
-              <img src="assets/default-user.png" alt="User Picture" />
-            </a>
-            <div class="side-menu__user-info">
-              <a href="http://127.0.0.1:8000/profile/" target="_blank"
-                >shital kadam</a
-              >
-              <span>####</span>
+          {% for i,j in result %}
+            <div class="side-menu__user-profile">
+              <a
+                href={{i}}
+                target="_blank"
+                class="side-menu__user-avatar"
+              ><img src="assets/default-user.png" alt="User Picture" />
+              </a>
+              <div>
+                  <div class="side-menu__user-info">
+                  <a href={{i}}  target="_blank"
+                    >{{j}}
+                  </a
+                  >
+                  <span>####</span>
+                  </div>
+                  <button class="side-menu__user-button">Follow</button>
+              </div>
             </div>
-            <button class="side-menu__user-button">Switch</button>
-          </div>
+          {%endfor%}
 
 <!--          <div class="side-menu__suggestions-section">-->
 <!--            <div class="side-menu__suggestions-header">-->
@@ -1408,48 +1417,48 @@
 <!--            </div>-->
 <!--          </div>-->
 
-          <div class="side-menu__footer">
-            <div class="side-menu__footer-links">
-              <ul class="side-menu__footer-list">
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">About</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Help</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Press</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">API</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Jobs</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Privacy</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Terms</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Locations</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Top Accounts</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Hashtag</a>
-                </li>
-                <li class="side-menu__footer-item">
-                  <a class="side-menu__footer-link" href="#">Language</a>
-                </li>
-              </ul>
-            </div>
+<!--          <div class="side-menu__footer">-->
+<!--            <div class="side-menu__footer-links">-->
+<!--              <ul class="side-menu__footer-list">-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">About</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Help</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Press</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">API</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Jobs</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Privacy</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Terms</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Locations</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Top Accounts</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Hashtag</a>-->
+<!--                </li>-->
+<!--                <li class="side-menu__footer-item">-->
+<!--                  <a class="side-menu__footer-link" href="#">Language</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
 
-            <span class="side-menu__footer-copyright"
-              >&copy; 2021 instagram from facebook</span
-            >
+<!--            <span class="side-menu__footer-copyright"-->
+<!--              >&copy; 2021 instagram from facebook</span-->
+<!--            >-->
           </div>
         </section>
       </section>
@@ -2456,3 +2465,10 @@ img {
   }
 }
 </style>
+
+
+
+<!--              {%for i in data%}-->
+<!--              row=i[0]-->
+<!--              row1 =i[1]-->
+<!--{%endfor%}-->

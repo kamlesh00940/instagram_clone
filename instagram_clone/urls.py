@@ -31,5 +31,6 @@ urlpatterns = [
     path('profile/', profile),
     path('getupdatevalue/', getupdatevalue),
     path('updateprofile/',updateprofile),
+    path('search/',search),
 
 ]

@@ -60,7 +60,6 @@ def login_page(request):
     # login details fetch
     email = request.POST['email']
     password = request.POST['password']
-
     cursor = connection.cursor()
     query = "select password, is_verify from signup where email= '"+email+"'"
     cursor.execute(query)
@@ -82,7 +81,7 @@ def login_page(request):
             username =row[0][3]
             bio=row[0][8]
             data = {"email": email,"username":username,"fullname":fullname,"bio":bio}
-            return render(request, "profile.html", data)
+            return render(request, "index.html", data)
 
         else:
             data = {"email": "Password is Not Correct!! Please Forgot", "password": password}
@@ -142,5 +141,17 @@ def updateprofile(request):
     data = {"email": email, "fullname": "update successfull"}
     return render(request, "second.html", data)
 
+def search(request):
+    search = request.GET['search']
+    cursor = connection.cursor()
+    ans = "%"+search+"%"
+    query = "select email , username from signup where email like '" +ans+ "'"
+    cursor.execute(query)
+    result = cursor.fetchall
+    # email = result[0][0]
+    # username= result[0][1]
+
+    data = {"result":result}
+    return render(request, "index.html", data)
 
 
