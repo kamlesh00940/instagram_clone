@@ -3,13 +3,15 @@ from django.db import connection
 from django.core.mail import send_mail
 import random
 # Create your views here.
-def xyz(request):
+def home(request):
     return render(request, "index.html")
 def login(request):
     return render(request, "login.html")
 
 def profile(request):
+
     return render(request, "profile.html")
+
 
 
 def signup(request):
