@@ -9,8 +9,12 @@ def login(request):
     return render(request, "login.html")
 
 def profile(request):
-
-    return render(request, "profile.html")
+    email = request.POST['email']
+    username = request.POST['username']
+    fullname = request.POST['fullname']
+    bio = request.POST['bio']
+    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username}
+    return render(request, "profile.html",data)
 
 
 
@@ -80,7 +84,7 @@ def login_page(request):
             fullname = row[0][2]
             username =row[0][3]
             bio=row[0][8]
-            data = {"email": email,"username":username,"fullname":fullname,"bio":bio}
+            data = {"email": email,"username":username,"bio":bio,"fullname":fullname, }
             return render(request, "index.html", data)
 
         else:
@@ -138,14 +142,14 @@ def updateprofile(request):
     query1="update signup set fullname=%s ,username=%s, bio=%s where email= '"+email+"' "
     value = (fullname, username, bio)
     cursor.execute(query1,value)
-    data = {"email": email, "fullname": "update successfull"}
+    data = {"email": email, "fullname": "update successfull","bio":bio}
     return render(request, "second.html", data)
 
 def search(request):
-    search = request.GET['search']
+    search = request.POST['search']
     cursor = connection.cursor()
-    ans = "%"+search+"%"
-    query = "select email , username from signup where email like '" +ans+ "'"
+    ans ="%"+search+"%"
+    query = "select email , username,bio from signup where username like '" +ans+ "'"
     cursor.execute(query)
     result = cursor.fetchall
     # email = result[0][0]
