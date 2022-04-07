@@ -35,7 +35,7 @@ urlpatterns = [
     path('signup_page/', signup_page),
     path('login_page/', login_page),
     path('otp_verify/', otp_verify),
-    path('profile/', profile),
+    # path('profile/', profile),
     path('getupdatevalue/', getupdatevalue),
     path('updateprofile/',updateprofile),
     path('search/',search),

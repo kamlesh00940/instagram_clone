@@ -11,13 +11,13 @@ def home(request):
 def login(request):
     return render(request, "login.html")
 
-def profile(request):
-    email = request.POST['email']
-    username = request.POST['username']
-    fullname = request.POST['fullname']
-    bio = request.POST['bio']
-    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username}
-    return render(request, "profile.html",data)
+# def profile(request):
+#     email = request.POST['email']
+#     username = request.POST['username']
+#     fullname = request.POST['fullname']
+#     bio = request.POST['bio']
+#     data = {"fullname": fullname, "email": email, "bio":bio, 'username': username}
+#     return render(request, "profile_img.html",data)
 
 
 
@@ -123,7 +123,7 @@ def otp_verify(request):
         cursor.execute(query1)
         #row1= cursor.fetchone()
         data = {"email": email, "otp": "Now you are verify user"}
-        return render(request, "second.html", data)
+        return render(request, "login.html", data)
     else:
         data = {"email": "please enter valid otp", "otp" : otp}
         return render(request, "second.html", data)
@@ -137,16 +137,18 @@ def getupdatevalue (request):
     return render(request,"updateprofile.html",data)
 
 def updateprofile(request):
+    email=request.POST['email']
     username=request.POST['username']
     fullname=request.POST['fullname']
-    email=request.POST['email']
     bio=request.POST['Bio']
     cursor = connection.cursor()
     query1="update signup set fullname=%s ,username=%s, bio=%s where email= '"+email+"' "
     value = (fullname, username, bio)
+    form = ImageForm()
+    img = Image.objects.all()
     cursor.execute(query1,value)
-    data = {"email": email, "fullname": "update successfull","bio":bio}
-    return render(request, "second.html", data)
+    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username,'img':img, 'form':form}
+    return render(request, "profile_img.html", data)
 
 def search(request):
     search = request.POST['search']
@@ -169,6 +171,16 @@ def profile_img(request):
             form.save()
     form = ImageForm()
     img = Image.objects.all()
-    return render(request, 'profile_img.html', {'img':img, 'form':form})
+
+    email = request.POST['email']
+    username = request.POST['username']
+    fullname = request.POST['fullname']
+    bio = request.POST['bio']
+
+    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username,'img':img, 'form':form}
+    return render(request, "profile_img.html",data)
+
+
+
 
 

@@ -61,7 +61,7 @@
 <!--          home profile sk search-->
         <div class="header__search">
         <form action="/search/" method="post">
-          <input type="text" placeholder="Search" name="search" />
+          <input type="text" placeholder="Search" name="search" value="{{username}}" />
 <!--          <svg-->
 <!--            width="24"-->
 <!--            height="24"-->
@@ -256,7 +256,7 @@
 <!--          </a>-->
 
 <!--          home profile sk-->
-            <form action="/profile/" method="post" style="margin-top:25px">
+            <form action="/profile_img/" method="post" style="margin-top:25px">
               <div>
                 <input type="hidden" name="email" value={{email}}>
                 <input type="hidden" name="username" value={{username}}>

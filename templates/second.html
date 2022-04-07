@@ -5,18 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-login with Username and Password
-<a href="http://127.0.0.1:8000/login/">Login</a> <br>
+<a href="http://127.0.0.1:8000/login/">Login</a>
+<script>
 
-<div>
-    {{email}} full name --> {{fullname}}
-</div>
+    alert("update profile succesfull" )
+    window.location.href = "http://127.0.0.1:8000/profile_img/";
 
-<div>
-
-    BIO IS {{bio}}
-</div>
-
+<!--    alert(document.getElementByTagName('a')[0].innerhtml="Login")-->
+</script>
 
 </body>
 </html>
