@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.db import connection
 from django.core.mail import send_mail
+from .forms import ImageForm
+from .models import Image
+
 import random
 # Create your views here.
 def home(request):
@@ -157,5 +160,15 @@ def search(request):
 
     data = {"result":result}
     return render(request, "index.html", data)
+
+
+def profile_img(request):
+    if request.method =="POST":
+        form=ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+    form = ImageForm()
+    img = Image.objects.all()
+    return render(request, 'app1/profile_img.html', {'img':img, 'form':form})
 
 

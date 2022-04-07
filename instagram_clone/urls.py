@@ -1,4 +1,10 @@
 from app1.views import *
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from app1 import views
+
 """instagram_clone URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -32,5 +38,9 @@ urlpatterns = [
     path('getupdatevalue/', getupdatevalue),
     path('updateprofile/',updateprofile),
     path('search/',search),
+    path('',views.profile_img),
 
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+# print(static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT))
+
