@@ -28,8 +28,8 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('profile_img/',views.profile_img),
     path('', signup),
-    path('',views.profile_img),
     path('home/',home),
     path('login/', login),
     path('signup_page/', signup_page),

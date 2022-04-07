@@ -169,6 +169,6 @@ def profile_img(request):
             form.save()
     form = ImageForm()
     img = Image.objects.all()
-    return render(request, 'app1/profile_img.html', {'img':img, 'form':form})
+    return render(request, 'profile_img.html', {'img':img, 'form':form})
 
 
