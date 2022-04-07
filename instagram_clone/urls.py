@@ -28,9 +28,10 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', signup),
+    path('',views.profile_img),
     path('home/',home),
     path('login/', login),
-    path('signup/', signup),
     path('signup_page/', signup_page),
     path('login_page/', login_page),
     path('otp_verify/', otp_verify),
@@ -38,7 +39,7 @@ urlpatterns = [
     path('getupdatevalue/', getupdatevalue),
     path('updateprofile/',updateprofile),
     path('search/',search),
-    path('',views.profile_img),
+
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
