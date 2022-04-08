@@ -87,11 +87,14 @@ def login_page(request):
             fullname = row[0][2]
             username =row[0][3]
             bio=row[0][8]
-            data = {"email": email,"username":username,"bio":bio,"fullname":fullname, }
+            form = ImageForm()
+            img = Image.objects.all()
+
+            data = {"email": email,"username":username,"bio":bio,"fullname":fullname, 'img':img, 'form':form}
             return render(request, "index.html", data)
 
         else:
-            data = {"email": "Password is Not Correct!! Please Forgot", "password": password}
+            data = {"email": "Password is Not Correct!! Please Forgot", "password": password,}
             return render(request, "second.html", data)
     else:
         data = {"email": email}
@@ -144,14 +147,18 @@ def updateprofile(request):
     cursor = connection.cursor()
     query1="update signup set fullname=%s ,username=%s, bio=%s where email= '"+email+"' "
     value = (fullname, username, bio)
-    form = ImageForm()
-    img = Image.objects.all()
+    # form = ImageForm()
+    # # img = Image.objects.all()
     cursor.execute(query1,value)
-    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username,'img':img, 'form':form}
-    return render(request, "profile_img.html", data)
+    data = {"fullname": fullname, "email": email, "bio":bio, 'username': username}
+    return render(request, "second.html", data)
 
 def search(request):
     search = request.POST['search']
+    email = request.POST['email']
+    fullname = request.POST['fullname']
+    username = request.POST['username']
+    bio = request.POST['bio']
     cursor = connection.cursor()
     ans ="%"+search+"%"
     query = "select email , username,bio from signup where username like '" +ans+ "'"
@@ -160,7 +167,7 @@ def search(request):
     # email = result[0][0]
     # username= result[0][1]
 
-    data = {"result":result}
+    data = {"result":result,"fullname": fullname, "email": email, 'username': username , "bio":bio}
     return render(request, "index.html", data)
 
 
